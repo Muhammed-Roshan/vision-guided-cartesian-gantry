@@ -6,11 +6,9 @@
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-Object%20Detection-red)
-![ESP32](https://img.shields.io/badge/ESP32-Microcontroller-green)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-orange)
-![Arduino](https://img.shields.io/badge/Arduino-IDE-teal)
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-orange?logo=opencv&logoColor=white)
+![Arduino](https://img.shields.io/badge/Arduino-IDE-00979D?logo=arduino&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blueviolet)
 
 </p>
@@ -94,7 +92,7 @@ vision-guided-cartesian-gantry/
 │   ├── images/
 │   └── demo/
 ├── docs/
-│   └── technical-details.md     # full write-up: mechanical design, CV pipeline, motion algorithm
+│   └── technical-details.md
 └── README.md
 ```
 
@@ -121,7 +119,7 @@ pip install -r requirements.txt
 
 ## Full Technical Deep-Dive
 
-For the complete write-up — detailed working principle (step-by-step), full hardware/mechanical design rationale, coordinate transformation math, motion planning pseudocode, engineering contributions by domain, and applications — see **[`docs/technical-details.md`](docs/technical-details.md)**.
+For the complete write-up — detailed working principle, mechanical design rationale, coordinate transformation math, and motion planning pseudocode — see **[`docs/technical-details.md`](docs/technical-details.md)**.
 
 ---
 
@@ -130,5 +128,5 @@ For the complete write-up — detailed working principle (step-by-step), full ha
 **Muhammed Roshan S**
 B.E. Robotics and Automation Engineering, PSG College of Technology
 
-[![GitHub](https://img.shields.io/badge/GitHub-Muhammed--Roshan-181717?style=flat-square&logo=github)](https://github.com/Muhammed-Roshan)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Muhammed%20Roshan-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/muhammed-roshan-401a04288)
+[![GitHub](https://img.shields.io/badge/GitHub-Muhammed--Roshan-181717?logo=github&logoColor=white)](https://github.com/Muhammed-Roshan)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Muhammed%20Roshan-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/muhammed-roshan-401a04288)
