@@ -1,8 +1,5 @@
 # 🤖 Vision-Guided Cartesian Pick-and-Place Robot using YOLOv8
 
-<p align="center">
-<img src="assets/images/banner.png" width="900">
-</p>
 
 <p align="center">
 
@@ -142,5 +139,5 @@ B.E. Robotics and Automation Engineering
 
 PSG College of Technology
 
-📧 LinkedIn: https://www.linkedin.com/in/muhammed-roshan-s-401a04288/
+📧 LinkedIn: https://www.linkedin.com/in/muhammed-roshan-s-401a04288
 💻 GitHub: https://github.com/Muhammed-Roshan
