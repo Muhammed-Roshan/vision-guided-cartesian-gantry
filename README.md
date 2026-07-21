@@ -1,132 +1,173 @@
-# Vision-Guided Cartesian Pick-and-Place Robot using YOLOv8 and ESP32
+# 🤖 Vision-Guided Cartesian Pick-and-Place Robot using YOLOv8
 
 <p align="center">
-  <img src="assets/images/banner.png" width="900">
+<img src="assets/images/banner.png" width="900">
 </p>
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-orange?logo=opencv&logoColor=white)
-![Arduino](https://img.shields.io/badge/Arduino-IDE-00979D?logo=arduino&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blueviolet)
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Object%20Detection-red)
+![ESP32](https://img.shields.io/badge/ESP32-Microcontroller-green)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-orange)
+![Arduino](https://img.shields.io/badge/Arduino-IDE-teal)
 
 </p>
 
-> A low-cost vision-guided robotic system that detects objects with **YOLOv8** and autonomously positions a custom-built two-axis Cartesian gantry over them using an **ESP32** motion controller — a complete perception-to-action pipeline in one platform.
+---
+
+## 📌 Overview
+
+This project presents a **vision-guided Cartesian robotic system** that autonomously detects objects using **YOLOv8** and positions a custom-built **2-axis Cartesian gantry** over the detected object.
+
+A fixed overhead camera captures the workspace, YOLOv8 identifies the object's centroid, and the coordinates are transmitted to an **ESP32**. The controller converts the received coordinates into motor steps and simultaneously drives two NEMA17 stepper motors to accurately position the end-effector.
+
+The project demonstrates the integration of **Computer Vision**, **Embedded Systems**, **Motion Control**, and **Mechanical Design** into a complete robotic automation system.
 
 ---
 
-## Demo
+## 🚀 Key Features
 
-<p align="center">
-  <img src="assets/demo/demo.gif" width="750">
-</p>
-
----
-
-## Overview
-
-Conventional pick-and-place systems typically need expensive industrial vision sensors, making them impractical for labs, education, and low-cost automation. This project builds the full pipeline from scratch: an overhead camera + YOLOv8 detect an object's position in real time, image coordinates are converted to physical robot coordinates, and an ESP32 drives NEMA17 stepper motors to move the end-effector to that exact position — autonomously, with no manual input.
-
-Built for the B.E. Robotics and Automation Engineering curriculum at PSG College of Technology, this integrates AI, computer vision, embedded systems, and mechanical design into one working system.
+- Real-time object detection using **YOLOv8**
+- Custom-built **2-axis Cartesian gantry**
+- ESP32-based motion controller
+- Simultaneous X-Y motion control
+- Pixel-to-Cartesian coordinate mapping
+- Dual-speed positioning algorithm for improved accuracy
+- Modular hardware and software architecture
 
 ---
 
-## System Architecture
+## ⚙️ System Workflow
 
 ```text
-Overhead Camera → YOLOv8 Detection → Centroid Calculation
-      → Pixel-to-Cartesian Transformation → Serial (115200 baud)
-      → ESP32 → Simultaneous X/Y Stepper Control → Gantry Motion → Target Reached
+Camera
+   │
+   ▼
+YOLOv8 Detection
+   │
+   ▼
+Object Centroid
+   │
+   ▼
+Coordinate Mapping
+   │
+   ▼
+Serial Communication
+   │
+   ▼
+ESP32 Controller
+   │
+   ▼
+Cartesian Gantry Motion
+   │
+   ▼
+Target Position Reached
 ```
 
 ---
 
-## Key Features
+## 🏗️ System Architecture
 
-- Real-time object detection with YOLOv8
-- Pixel-to-Cartesian coordinate transformation
-- Simultaneous two-axis motor control (smooth diagonal motion, not sequential)
-- **Dual-speed positioning** — 85% fast traversal + 15% precision slow-down, reducing overshoot while keeping speed high
-- Fully autonomous vision-to-motion operation, no manual intervention
-
----
-
-## Results
-
-- Reliable real-time detection and stable serial communication between Python and ESP32
-- Accurate pixel-to-Cartesian transformation, validated across the calibrated workspace
-- Dual-speed control measurably reduced overshoot compared to constant-speed motion
-- Fully autonomous end-to-end operation from detection to final positioning
-
----
-
-## Hardware
-
-| Component | Spec | Role |
-|---|---|---|
-| Camera | USB Webcam | Overhead workspace capture |
-| Controller | ESP32 | Motion control + serial comms |
-| Motors | NEMA17 (×2) | X/Y axis actuation |
-| Driver | A4988 | Stepper control |
-| Motion | TR8 lead screw, 2mm pitch | Rotary → linear conversion |
-| Frame | Aluminium extrusion + linear rods | Structure & guidance |
-
-**Steps/mm calculation:** `(200 steps × 8 microstepping) / 2mm pitch = 800 steps/mm`
-
----
-
-## Repository Structure
-
-```
-vision-guided-cartesian-gantry/
-├── python_code/
-│   ├── detect_and_send.py
-│   ├── best.pt
-│   └── requirements.txt
-├── esp32_firmware/
-│   ├── gantry_controller.ino
-│   └── calibration.h
-├── assets/
-│   ├── images/
-│   └── demo/
-├── docs/
-│   └── technical-details.md
-└── README.md
+```text
+Overhead Camera
+       │
+       ▼
+Python + YOLOv8
+       │
+Serial Communication
+       │
+       ▼
+ESP32 Controller
+       │
+ ┌─────┴─────┐
+ ▼           ▼
+X Stepper   Y Stepper
+       │
+       ▼
+Cartesian Gantry
 ```
 
 ---
 
-## Setup & Usage
+## 🛠️ Hardware
 
-```bash
-pip install -r requirements.txt
-```
-1. Flash `esp32_firmware/gantry_controller.ino` via Arduino IDE
-2. Set the correct COM port in `detect_and_send.py`
-3. Run: `python python_code/detect_and_send.py`
-
----
-
-## Limitations & Next Steps
-
-**Current limitations:** fixed camera position, manual workspace calibration, open-loop motor control (no encoder feedback), single-object detection only.
-
-**Planned improvements:** encoder feedback for closed-loop control, multi-object tracking, homography-based camera calibration, conveyor/QR integration for sorting applications.
+| Component | Specification |
+|-----------|--------------|
+| Controller | ESP32 |
+| Vision System | USB Camera |
+| Detection Model | YOLOv8 |
+| Motors | 2 × NEMA17 Stepper Motors |
+| Drivers | A4988 |
+| Motion System | TR8 Lead Screw |
+| Frame | Aluminium Extrusion |
 
 ---
 
-## Full Technical Deep-Dive
+## 💻 Software Stack
 
-For the complete write-up — detailed working principle, mechanical design rationale, coordinate transformation math, and motion planning pseudocode — see **[`docs/technical-details.md`](docs/technical-details.md)**.
+- Python
+- YOLOv8 (Ultralytics)
+- OpenCV
+- Arduino IDE
+- ESP32 Firmware
+- Serial Communication
 
 ---
 
-## Author
+## 📸 Project Demonstration
+
+### Object Detection
+
+<p align="center">
+<img src="assets/images/detection.png" width="700">
+</p>
+
+---
+
+### Cartesian Gantry
+
+<p align="center">
+<img src="assets/images/gantry.png" width="700">
+</p>
+
+---
+
+### System Demonstration
+
+<p align="center">
+<img src="assets/demo/demo.gif" width="750">
+</p>
+
+---
+
+## 📈 Highlights
+
+- Designed and fabricated a custom Cartesian gantry mechanism
+- Implemented real-time vision-guided positioning
+- Developed a dual-speed motion algorithm for improved positioning accuracy
+- Integrated AI, embedded systems, and motion control into a single automation platform
+
+---
+
+## 🚀 Future Improvements
+
+- Automatic pick-and-place using a robotic gripper
+- Multi-object detection and sorting
+- Closed-loop position feedback using encoders
+- Camera calibration using homography
+- Conveyor-based industrial automation
+
+---
+
+## 👨‍💻 Author
 
 **Muhammed Roshan S**
-B.E. Robotics and Automation Engineering, PSG College of Technology
 
-[![GitHub](https://img.shields.io/badge/GitHub-Muhammed--Roshan-181717?logo=github&logoColor=white)](https://github.com/Muhammed-Roshan)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Muhammed%20Roshan-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/muhammed-roshan-401a04288)
+B.E. Robotics and Automation Engineering
+
+PSG College of Technology
+
+📧 LinkedIn: https://linkedin.com/in/muhammed-roshan-401a04288
+
+💻 GitHub: https://github.com/Muhammed-Roshan
