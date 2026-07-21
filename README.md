@@ -115,32 +115,6 @@ Cartesian Gantry
 
 ---
 
-## 📸 Project Demonstration
-
-### Object Detection
-
-<p align="center">
-<img src="assets/images/detection.png" width="700">
-</p>
-
----
-
-### Cartesian Gantry
-
-<p align="center">
-<img src="assets/images/gantry.png" width="700">
-</p>
-
----
-
-### System Demonstration
-
-<p align="center">
-<img src="assets/demo/demo.gif" width="750">
-</p>
-
----
-
 ## 📈 Highlights
 
 - Designed and fabricated a custom Cartesian gantry mechanism
@@ -168,6 +142,5 @@ B.E. Robotics and Automation Engineering
 
 PSG College of Technology
 
-📧 LinkedIn: https://linkedin.com/in/muhammed-roshan-401a04288
-
+📧 LinkedIn: https://www.linkedin.com/in/muhammed-roshan-s-401a04288/
 💻 GitHub: https://github.com/Muhammed-Roshan
